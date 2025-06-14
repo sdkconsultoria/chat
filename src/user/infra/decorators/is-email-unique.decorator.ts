@@ -11,7 +11,7 @@ import { FindOneUserUsecase } from 'src/user/app/find-one-user.usecase';
 @ValidatorConstraint({ async: true })
 @Injectable()
 export class IsEmailUniqueConstraint implements ValidatorConstraintInterface {
-  constructor(private findOneUserUsecase: FindOneUserUsecase) {}
+  constructor(private readonly findOneUserUsecase: FindOneUserUsecase) { }
 
   async validate(email: string, args: ValidationArguments) {
     const user = await this.findOneUserUsecase.execute({ email });

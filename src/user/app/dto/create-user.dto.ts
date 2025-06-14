@@ -1,5 +1,12 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 import { Match } from 'src/global/infra/decorators/match.decorator';
+import { IsEmailUnique } from 'src/user/infra/decorators/is-email-unique.decorator';
 
 export class CreateUserDto {
   @IsString()
@@ -8,12 +15,14 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty({ message: 'Last name should not be empty' })
-  lastName: string;
+  lastname: string;
 
   @IsString()
-  lastName2: string;
+  @IsOptional()
+  lastname2: string;
 
   @IsEmail({}, { message: 'Invalid email address' })
+  @IsEmailUnique({ message: 'Email already exists' })
   email: string;
 
   @IsString()
@@ -22,11 +31,12 @@ export class CreateUserDto {
   password: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'Password confirmation should not be empty' })
+  @IsNotEmpty({ message: 'PasswordConfirmation should not be empty' })
   @MinLength(8)
   @Match('password', { message: 'Passwords do not match' })
   passwordConfirmation: string;
 
   @IsString()
+  @IsOptional()
   profilePicture: string;
 }

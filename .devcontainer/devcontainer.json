@@ -15,7 +15,6 @@
         "dbaeumer.vscode-eslint",
         "mhutchie.git-graph",
         "pflannery.vscode-versionlens",
-        "esbenp.prettier-vscode",
         "firsttris.vscode-jest-runner",
         "eamodio.gitlens",
         "Supermaven.supermaven",
@@ -23,7 +22,6 @@
       ],
       "settings": {
         "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.codeActionsOnSave": {
           "source.fixAll.eslint": "always"
         }

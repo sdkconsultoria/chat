@@ -8,6 +8,8 @@ import { GetAllUsecase } from './app/get-all-user.usecase';
 import { UpdateUserUsecase } from './app/update-user.usecase';
 import { DeleteUserUsecase } from './app/delete-user.usecase';
 import { GetUserUsecase } from './app/get-user.usecase';
+import { IsEmailUniqueConstraint } from './infra/decorators/is-email-unique.decorator';
+import { FindOneUserUsecase } from './app/find-one-user.usecase';
 
 @Module({
   imports: [
@@ -20,10 +22,20 @@ import { GetUserUsecase } from './app/get-user.usecase';
     DeleteUserUsecase,
     GetAllUsecase,
     GetUserUsecase,
+    FindOneUserUsecase,
+    IsEmailUniqueConstraint,
     {
       provide: 'userRepository',
       useClass: UserRepository,
     },
+  ],
+  exports: [
+    {
+      provide: 'userRepository',
+      useClass: UserRepository,
+    },
+    FindOneUserUsecase,
+    IsEmailUniqueConstraint,
   ],
 })
 export class UserModule {}
