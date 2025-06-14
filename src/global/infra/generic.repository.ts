@@ -1,7 +1,3 @@
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { FilterQuery, Model, Types } from 'mongoose';
 import { IGenericRepository } from '../app/generic.repository.interface';
 import { PaginationResultDto } from '../app/dto/pagination-result.dto';
@@ -32,46 +28,62 @@ export abstract class GenericRepository<TModel, TDocument>
         from: page * this.pageSize - this.pageSize + 1,
         last_page: Math.ceil(total / this.pageSize),
         per_page: this.pageSize,
-        to: page * this.pageSize,
+        to: Math.min(page * this.pageSize, total),
         total,
       },
     };
   }
 
-  async countByQuery(query: any): Promise<number> {
-    return await this.model
+  async countByQuery(query: FilterQuery<TDocument>): Promise<number> {
+    return this.model.countDocuments({ ...query, deletedAt: null }).exec();
+  }
+
+  async findByQuery(
+    query: FilterQuery<TDocument>,
+    page: number = 1,
+  ): Promise<TModel[]> {
+    const documents = await this.model
       .find({ ...query, deletedAt: null })
-      .countDocuments()
+      .limit(this.pageSize)
+      .skip(this.pageSize * (page - 1))
       .exec();
+
+    return documents.map((item) => this.transform(item));
   }
 
-  async findByQuery(query: any, page: number = 1): Promise<TModel[]> {
-    return (
-      await this.model
-        .find({ ...query, deletedAt: null })
-        .limit(this.pageSize)
-        .skip(this.pageSize * (page - 1))
-        .exec()
-    ).map((item) => this.transform(item));
+  async findOne(query: FilterQuery<TDocument>): Promise<TModel> {
+    const result = await this.model
+      .findOne({ ...query, deletedAt: null })
+      .exec();
+
+    if (!result) {
+      throw new Error('item not found');
+    }
+
+    return this.transform(result);
   }
 
-  async findOne(id: string): Promise<TModel> {
+  async findOneById(id: string): Promise<TModel> {
     const objectId = new Types.ObjectId(id);
 
     const result = await this.model
       .findOne({ _id: objectId, deletedAt: null })
       .exec();
+
     if (!result) {
       throw new Error('item not found' + id);
     }
+
     return this.transform(result);
   }
 
-  async create(item: any): Promise<TModel> {
-    return this.transform(await this.model.create(item));
+  async create<T>(item: T): Promise<TModel> {
+    const createdDocument = await this.model.create(item);
+
+    return this.transform(createdDocument);
   }
 
-  async update(id: string, item: any): Promise<TModel> {
+  async update<T>(id: string, item: T): Promise<TModel> {
     const objectId = new Types.ObjectId(id);
 
     const result = await this.model
@@ -81,7 +93,7 @@ export abstract class GenericRepository<TModel, TDocument>
       throw new Error('item not found: ' + id);
     }
 
-    return await this.findOne(id);
+    return this.transform(result);
   }
 
   async delete(id: string): Promise<TModel> {
@@ -95,15 +107,19 @@ export abstract class GenericRepository<TModel, TDocument>
   }
 
   protected transform(item: TDocument): TModel {
+    if (!item || typeof item !== 'object' || !('_doc' in item)) {
+      throw new Error('Invalid document format');
+    }
+
     const newModel: TModel = new this.modelConstructor();
-    const doc = item['_doc'];
+    const doc = (item as { _doc: Record<string, any> })['_doc'];
 
     for (const key in newModel) {
-      if (doc.hasOwnProperty(key)) {
-        newModel[key] = doc[key];
+      if (Object.prototype.hasOwnProperty.call(doc, key)) {
+        newModel[key as keyof TModel] = doc[key] as TModel[keyof TModel];
       }
     }
-    newModel['id'] = doc['_id'];
+    newModel['id'] = doc['_id'] as string;
     return newModel;
   }
 }

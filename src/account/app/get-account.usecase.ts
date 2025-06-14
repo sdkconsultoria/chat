@@ -8,6 +8,6 @@ export class GetAccountUsecase {
   ) {}
 
   async execute(id: string): Promise<any> {
-    return await this.accountRepository.findOne(id);
+    return await this.accountRepository.findOneById(id);
   }
 }
