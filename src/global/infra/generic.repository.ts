@@ -56,25 +56,13 @@ export abstract class GenericRepository<TModel, TDocument>
       .findOne({ ...query, deletedAt: null })
       .exec();
 
-    if (!result) {
-      throw new Error('item not found');
-    }
-
     return this.transform(result);
   }
 
   async findOneById(id: string): Promise<TModel> {
     const objectId = new Types.ObjectId(id);
 
-    const result = await this.model
-      .findOne({ _id: objectId, deletedAt: null })
-      .exec();
-
-    if (!result) {
-      throw new Error('item not found' + id);
-    }
-
-    return this.transform(result);
+    return await this.findOne({ _id: objectId });
   }
 
   async create<T>(item: T): Promise<TModel> {
@@ -87,11 +75,8 @@ export abstract class GenericRepository<TModel, TDocument>
     const objectId = new Types.ObjectId(id);
 
     const result = await this.model
-      .findOneAndUpdate({ _id: objectId, deletedAt: null }, item)
+      .findOneAndUpdate({ _id: objectId, deletedAt: null }, item, { new: true })
       .exec();
-    if (!result) {
-      throw new Error('item not found: ' + id);
-    }
 
     return this.transform(result);
   }
@@ -107,7 +92,11 @@ export abstract class GenericRepository<TModel, TDocument>
   }
 
   protected transform(item: TDocument): TModel {
-    if (!item || typeof item !== 'object' || !('_doc' in item)) {
+    if (!item) {
+      return null;
+    }
+
+    if (typeof item !== 'object' || !('_doc' in item)) {
       throw new Error('Invalid document format');
     }
 
