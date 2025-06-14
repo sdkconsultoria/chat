@@ -5,10 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Model } from 'mongoose'; // Ensure Model is imported from mongoose
 
-export class UserRepository extends GenericRepository<
-  UserModel,
-  UserDocument
-> {
+export class UserRepository extends GenericRepository<UserModel, UserDocument> {
   constructor(
     @InjectModel('User')
     protected readonly model: Model<UserDocument>,

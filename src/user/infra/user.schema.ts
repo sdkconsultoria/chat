@@ -5,14 +5,29 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema({ timestamps: true })
 export class User {
-  @Prop({ required: true, index: true })
+  @Prop({ required: true })
   name: string;
 
   @Prop({ required: true })
-  type: 'CLIENT' | 'RESELLER';
+  lastname: string;
+
+  @Prop()
+  lastname2: string;
 
   @Prop({ required: true, unique: true, index: true })
   email: string;
+
+  @Prop()
+  lastLogin: Date;
+
+  @Prop()
+  lastPasswordChange: Date;
+
+  @Prop()
+  status: string;
+
+  @Prop()
+  emailVerified: boolean;
 
   @Prop()
   createdAt: Date;
@@ -25,6 +40,12 @@ export class User {
 
   @Prop()
   updates: Array<Date>;
+
+  @Prop()
+  password: string;
+
+  @Prop()
+  accountId: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

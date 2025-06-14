@@ -15,9 +15,10 @@ import { getConnectionToken } from '@nestjs/mongoose';
 import { AccountModule } from 'src/account/account.module';
 import { InfraModule } from 'src/global/infra/infra.module';
 import { CreateAccountDto } from 'src/account/app/dto/create-account.dto';
+import { Server } from 'net';
 
-let app: INestApplication;
-let server: any;
+let app: INestApplication<Server>;
+let server: Server;
 let connection: Connection;
 
 BeforeAll(async () => {
