@@ -7,11 +7,11 @@ import {
   Request,
   Get,
 } from '@nestjs/common';
-import { RegisterUserDto } from './app/register-user.dto';
-import { RegisterUserUsecase } from './app/register-user.usecase';
+import { RegisterUserDto } from '../app/register-user.dto';
+import { RegisterUserUsecase } from '../app/register-user.usecase';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './local-auth.guard';
-import { Public } from './infra/decorators/public.decorator';
+import { Public } from './decorators/public.decorator';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller()
 export class AuthController {
@@ -19,7 +19,7 @@ export class AuthController {
     @Inject()
     private registerUserUsecase: RegisterUserUsecase,
     private authService: AuthService,
-  ) { }
+  ) {}
 
   @Post('register')
   async register(@Body() data: RegisterUserDto): Promise<any> {
