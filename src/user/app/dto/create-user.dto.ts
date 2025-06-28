@@ -9,18 +9,6 @@ import { Match } from 'src/global/infra/decorators/match.decorator';
 import { IsEmailUnique } from 'src/user/infra/decorators/is-email-unique.decorator';
 
 export class CreateUserDto {
-  @IsString()
-  @IsNotEmpty({ message: 'Name should not be empty' })
-  name: string;
-
-  @IsString()
-  @IsNotEmpty({ message: 'Last name should not be empty' })
-  lastname: string;
-
-  @IsString()
-  @IsOptional()
-  lastname2: string;
-
   @IsEmail({}, { message: 'Invalid email address' })
   @IsEmailUnique({ message: 'Email already exists' })
   email: string;

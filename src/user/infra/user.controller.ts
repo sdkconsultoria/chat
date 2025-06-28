@@ -15,6 +15,7 @@ import { UpdateUserDto } from '../app/dto/update-user.dto';
 import { UpdateUserUsecase } from '../app/update-user.usecase';
 import { DeleteUserUsecase } from '../app/delete-user.usecase';
 import { GetUserUsecase } from '../app/get-user.usecase';
+import { Public } from 'src/auth/infra/decorators/public.decorator';
 
 @Controller('user')
 export class UserController {
@@ -37,6 +38,7 @@ export class UserController {
     return await this.getUserUsecase.execute(id);
   }
 
+  @Public()
   @Post()
   async create(@Body() data: CreateUserDto): Promise<any> {
     return await this.createTemplateUsecase.execute(data);
