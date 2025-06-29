@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const directoryPath = path.join(__dirname, 'src/account');
+const directoryPath = path.join(__dirname, 'src/appointment');
 
 function renameFilesInDirectory(dir) {
   fs.readdir(dir, (err, files) => {
@@ -16,7 +16,7 @@ function renameFilesInDirectory(dir) {
         // Recursively rename files in subdirectories
         renameFilesInDirectory(filePath);
       } else {
-        const newFileName = file.replace(/user/g, 'account');
+        const newFileName = file.replace(/service/g, 'appointment');
         if (newFileName !== file) {
           const newFilePath = path.join(dir, newFileName);
           fs.rename(filePath, newFilePath, (err) => {
