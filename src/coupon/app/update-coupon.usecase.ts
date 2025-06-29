@@ -1,13 +1,13 @@
 import { Inject } from '@nestjs/common';
-import { IProductRepository } from './product.repository.interface';
+import { IProductRepository } from './coupon.repository.interface';
 
 export class UpdateProductUsecase {
   constructor(
-    @Inject('productRepository')
-    private productRepository: IProductRepository,
+    @Inject('couponRepository')
+    private couponRepository: IProductRepository,
   ) {}
 
   async execute(id: string, data: any): Promise<any> {
-    await this.productRepository.update(id, data);
+    await this.couponRepository.update(id, data);
   }
 }

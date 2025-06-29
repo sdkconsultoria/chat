@@ -8,15 +8,15 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateProductUsecase } from '../app/create-product.usecase';
-import { CreateProductDto } from '../app/dto/create-product.dto';
-import { GetAllUsecase } from '../app/get-all-product.usecase';
-import { UpdateProductDto } from '../app/dto/update-product.dto';
-import { UpdateProductUsecase } from '../app/update-product.usecase';
-import { DeleteProductUsecase } from '../app/delete-product.usecase';
-import { GetProductUsecase } from '../app/get-product.usecase';
+import { CreateProductUsecase } from '../app/create-coupon.usecase';
+import { CreateProductDto } from '../app/dto/create-coupon.dto';
+import { GetAllUsecase } from '../app/get-all-coupon.usecase';
+import { UpdateProductDto } from '../app/dto/update-coupon.dto';
+import { UpdateProductUsecase } from '../app/update-coupon.usecase';
+import { DeleteProductUsecase } from '../app/delete-coupon.usecase';
+import { GetProductUsecase } from '../app/get-coupon.usecase';
 
-@Controller('product')
+@Controller('coupon')
 export class ProductController {
   constructor(
     @Inject()

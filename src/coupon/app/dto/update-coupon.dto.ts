@@ -1,3 +1,3 @@
-import { CreateProductDto } from './create-product.dto';
+import { CreateProductDto } from './create-coupon.dto';
 
 export class UpdateProductDto extends CreateProductDto {}
