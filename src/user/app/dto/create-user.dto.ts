@@ -25,6 +25,12 @@ export class CreateUserDto {
   passwordConfirmation: string;
 
   @IsString()
+  role: string;
+
+  @IsString()
+  name: string;
+
+  @IsString()
   @IsOptional()
   profilePicture: string;
 }

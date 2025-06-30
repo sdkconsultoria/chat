@@ -1,10 +1,9 @@
 export class UserModel {
   id: string;
   name: string;
-  lastName: string;
-  lastName2: string;
-  profilePicture: string;
+  role: string;
   email: string;
+  profilePicture: string;
   password: string;
   createdAt: Date;
   updatedAt: Date;

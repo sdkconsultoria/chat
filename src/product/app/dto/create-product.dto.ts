@@ -1,7 +1,6 @@
 import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { CreateUserDto } from 'src/user/app/dto/create-user.dto';
 
-export class CreateProductDto extends CreateUserDto {
+export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   name: string;
