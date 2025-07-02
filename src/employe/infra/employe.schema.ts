@@ -1,14 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Types } from 'mongoose';
-import { User } from 'src/user/infra/user.schema';
+import { HydratedDocument } from 'mongoose';
 
 export type EmployeDocument = HydratedDocument<Employe>;
 
 @Schema({ timestamps: true })
 export class Employe {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  userId: User;
-
   @Prop()
   name: string;
 
@@ -16,13 +12,25 @@ export class Employe {
   lastname: string;
 
   @Prop()
-  dni: string;
-
-  @Prop()
   phoneNumber: string;
 
   @Prop()
+  emergencyPhone: string;
+
+  @Prop()
+  emergencyContact: string;
+
+  @Prop()
   address: string;
+
+  @Prop()
+  startDate: string;
+
+  @Prop()
+  notes: string;
+
+  @Prop()
+  status: string;
 
   @Prop()
   hireDate: Date;

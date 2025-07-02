@@ -1,13 +1,17 @@
 export class EmployeModel {
   id: string;
   name: string;
-  lastName: string;
-  lastName2: string;
-  profilePicture: string;
-  email: string;
-  password: string;
+  lastname: string;
+  phoneNumber: string;
+  startDate: string;
+  salary: number;
+  notes: string;
+  address: string;
+  emergencyPhone: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
+  emergencyContact: string;
+  status: string;
   updates: Array<Date>;
 }

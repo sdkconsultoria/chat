@@ -9,12 +9,10 @@ import { UpdateEmployeUsecase } from './app/update-employe.usecase';
 import { DeleteEmployeUsecase } from './app/delete-employe.usecase';
 import { GetEmployeUsecase } from './app/get-employe.usecase';
 import { FindOneEmployeUsecase } from './app/find-one-employe.usecase';
-import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Employe.name, schema: EmployeSchema }]),
-    UserModule,
   ],
   controllers: [EmployeController],
   providers: [

@@ -1,4 +1,11 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsDate,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateEmployeDto {
   @IsString()
@@ -17,7 +24,28 @@ export class CreateEmployeDto {
   @IsOptional()
   address: string;
 
+  @IsNumber()
+  @IsOptional()
+  salary: number;
+
+  @IsString()
+  @IsNotEmpty()
+  status: string;
+
   @IsDate()
   @IsOptional()
-  hireDate: Date;
+  @Type(() => Date)
+  startDate: Date;
+
+  @IsString()
+  @IsOptional()
+  emergencyContact: string;
+
+  @IsString()
+  @IsOptional()
+  emergencyPhone: string;
+
+  @IsString()
+  @IsOptional()
+  notes: string;
 }
