@@ -32,8 +32,8 @@ export class CreateEmployeDto {
   @IsNotEmpty()
   status: string;
 
+  @IsNotEmpty()
   @IsDate()
-  @IsOptional()
   @Type(() => Date)
   startDate: Date;
 
