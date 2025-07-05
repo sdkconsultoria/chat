@@ -9,12 +9,10 @@ import { UpdateServiceUsecase } from './app/update-service.usecase';
 import { DeleteServiceUsecase } from './app/delete-service.usecase';
 import { GetServiceUsecase } from './app/get-service.usecase';
 import { FindOneServiceUsecase } from './app/find-one-service.usecase';
-import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Service.name, schema: ServiceSchema }]),
-    UserModule,
   ],
   controllers: [ServiceController],
   providers: [

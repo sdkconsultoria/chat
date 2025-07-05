@@ -1,4 +1,5 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateServiceDto {
   @IsString()
@@ -7,17 +8,33 @@ export class CreateServiceDto {
 
   @IsString()
   @IsNotEmpty()
-  lastname: string;
+  description: string;
+
+  @Transform(({ value }) => Number(value))
+  @IsNumber()
+  price: number;
+
+  @Transform(({ value }) => Number(value))
+  @IsNumber()
+  duration: number;
 
   @IsString()
   @IsNotEmpty()
-  phoneNumber: string;
+  category: string;
+
+  @IsString()
+  @IsNotEmpty()
+  status: string;
 
   @IsString()
   @IsOptional()
-  address: string;
+  includes: string;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
-  hireDate: Date;
+  requirements: string;
+
+  @IsString()
+  @IsOptional()
+  notes: string;
 }

@@ -1,11 +1,15 @@
 export class ServiceModel {
   id: string;
   name: string;
-  lastName: string;
-  lastName2: string;
-  profilePicture: string;
-  email: string;
-  password: string;
+  description: string;
+  price: number;
+  duration: number;
+  category: string;
+  status: string;
+  includes: string;
+  requirements: string;
+  notes: string;
+  popularity: number;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

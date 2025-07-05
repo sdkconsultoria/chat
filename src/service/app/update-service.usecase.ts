@@ -8,6 +8,6 @@ export class UpdateServiceUsecase {
   ) {}
 
   async execute(id: string, data: any): Promise<any> {
-    await this.serviceRepository.update(id, data);
+    return await this.serviceRepository.update(id, data);
   }
 }

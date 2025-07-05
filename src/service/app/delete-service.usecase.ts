@@ -8,6 +8,6 @@ export class DeleteServiceUsecase {
   ) {}
 
   async execute(id: string): Promise<any> {
-    await this.serviceRepository.delete(id);
+    return await this.serviceRepository.delete(id);
   }
 }
