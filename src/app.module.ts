@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { EmployeModule } from './employe/employe.module';
 import { ClientModule } from './client/client.module';
 import { ServiceModule } from './service/service.module';
+import { ProductModule } from './product/product.module';
 
 @Global()
 @Module({
@@ -17,6 +18,7 @@ import { ServiceModule } from './service/service.module';
     EmployeModule,
     ClientModule,
     ServiceModule,
+    ProductModule,
   ],
 })
 export class AppModule {}

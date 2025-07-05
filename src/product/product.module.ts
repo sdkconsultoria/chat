@@ -9,12 +9,10 @@ import { UpdateProductUsecase } from './app/update-product.usecase';
 import { DeleteProductUsecase } from './app/delete-product.usecase';
 import { GetProductUsecase } from './app/get-product.usecase';
 import { FindOneProductUsecase } from './app/find-one-product.usecase';
-import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
-    UserModule,
   ],
   controllers: [ProductController],
   providers: [

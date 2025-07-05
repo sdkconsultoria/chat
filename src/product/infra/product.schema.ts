@@ -1,34 +1,39 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Types } from 'mongoose';
-import { User } from 'src/user/infra/user.schema';
+import { HydratedDocument } from 'mongoose';
 
 export type ProductDocument = HydratedDocument<Product>;
 
 @Schema({ timestamps: true })
 export class Product {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  userId: User;
-
   @Prop()
   name: string;
 
   @Prop()
-  lastname: string;
+  category: string;
 
   @Prop()
-  dni: string;
+  price: number;
 
   @Prop()
-  phoneNumber: string;
+  description: string;
 
   @Prop()
-  address: string;
+  status: string;
 
   @Prop()
-  hireDate: Date;
+  popularity: number;
 
   @Prop()
-  salary: number;
+  stock: number;
+
+  @Prop()
+  sku: string;
+
+  @Prop()
+  barcode: string;
+
+  @Prop()
+  minStock: number;
 
   @Prop()
   createdAt: Date;

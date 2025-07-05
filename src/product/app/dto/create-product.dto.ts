@@ -1,4 +1,5 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -7,17 +8,32 @@ export class CreateProductDto {
 
   @IsString()
   @IsNotEmpty()
-  lastname: string;
+  category: string;
+
+  @Transform(({ value }) => Number(value))
+  @IsNumber()
+  price: number;
+
+  @IsOptional()
+  description: string;
+
+  @IsString()
+  @IsOptional()
+  status: string;
+
+  @Transform(({ value }) => Number(value))
+  @IsNumber()
+  stock: number;
+
+  @Transform(({ value }) => Number(value))
+  @IsNumber()
+  minStock: number;
 
   @IsString()
   @IsNotEmpty()
-  phoneNumber: string;
+  sku: string;
 
   @IsString()
   @IsOptional()
-  address: string;
-
-  @IsDate()
-  @IsOptional()
-  hireDate: Date;
+  barcode: string;
 }
