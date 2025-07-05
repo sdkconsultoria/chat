@@ -1,11 +1,14 @@
 export class ClientModel {
   id: string;
   name: string;
-  lastName: string;
-  lastName2: string;
-  profilePicture: string;
   email: string;
-  password: string;
+  phoneNumber: string;
+  notes: string;
+  type: string;
+  status: string;
+  lastVisit: Date;
+  totalVisits: number;
+  pets: Array<object>;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

@@ -3,7 +3,6 @@ import { JwtService } from '@nestjs/jwt';
 import { FindOneUserUsecase } from 'src/user/app/find-one-user.usecase';
 import * as bcrypt from 'bcrypt';
 import { UserModel } from 'src/user/domain/user.model';
-import { use } from 'passport';
 
 @Injectable()
 export class AuthService {
@@ -34,7 +33,9 @@ export class AuthService {
       },
     };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload, {
+        expiresIn: '4h',
+      }),
       user: {
         email: user.email,
         role: user.role,

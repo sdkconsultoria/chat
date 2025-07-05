@@ -4,9 +4,17 @@ import { AccountModule } from './account/account.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { EmployeModule } from './employe/employe.module';
+import { ClientModule } from './client/client.module';
 
 @Global()
 @Module({
-  imports: [InfraModule, AuthModule, AccountModule, UserModule, EmployeModule],
+  imports: [
+    InfraModule,
+    AuthModule,
+    AccountModule,
+    UserModule,
+    EmployeModule,
+    ClientModule,
+  ],
 })
 export class AppModule {}
