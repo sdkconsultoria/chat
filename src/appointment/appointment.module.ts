@@ -9,12 +9,12 @@ import { UpdateAppointmentUsecase } from './app/update-appointment.usecase';
 import { DeleteAppointmentUsecase } from './app/delete-appointment.usecase';
 import { GetAppointmentUsecase } from './app/get-appointment.usecase';
 import { FindOneAppointmentUsecase } from './app/find-one-appointment.usecase';
-import { UserModule } from 'src/user/user.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Appointment.name, schema: AppointmentSchema }]),
-    UserModule,
+    MongooseModule.forFeature([
+      { name: Appointment.name, schema: AppointmentSchema },
+    ]),
   ],
   controllers: [AppointmentController],
   providers: [
