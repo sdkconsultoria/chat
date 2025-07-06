@@ -16,4 +16,5 @@ export class ProductDto extends BaseDto {
   updatedAt: Date;
   deletedAt: Date;
   updates: Array<Date>;
+  type: string = 'product';
 }

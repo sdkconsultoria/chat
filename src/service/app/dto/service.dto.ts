@@ -12,4 +12,5 @@ export class ServiceDto extends BaseDto {
   requirements: string;
   notes: string;
   popularity: number;
+  type: string = 'service';
 }
