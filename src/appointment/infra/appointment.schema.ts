@@ -25,6 +25,9 @@ export class Appointment {
   time: string;
 
   @Prop()
+  status: string;
+
+  @Prop()
   employee: string;
 
   @Prop()

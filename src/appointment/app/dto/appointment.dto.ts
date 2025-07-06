@@ -7,6 +7,7 @@ export class AppointmentDto extends BaseDto {
   service: object;
   date: Date;
   time: string;
+  status: string;
   employee: string;
   notes: string;
   createdAt: Date;

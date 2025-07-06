@@ -11,4 +11,5 @@ export class AppointmentModel {
   updatedAt: Date;
   deletedAt: Date;
   updates: Array<Date>;
+  status: string;
 }
