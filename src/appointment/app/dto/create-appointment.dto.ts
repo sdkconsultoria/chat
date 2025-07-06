@@ -1,23 +1,40 @@
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsDate,
+  IsNotEmpty,
+  IsNotEmptyObject,
+  IsObject,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateAppointmentDto {
-  @IsString()
-  @IsNotEmpty()
-  name: string;
+  @IsObject()
+  @IsNotEmptyObject()
+  client: object;
 
-  @IsString()
-  @IsNotEmpty()
-  lastname: string;
+  @IsObject()
+  @IsNotEmptyObject()
+  pet: object;
 
-  @IsString()
-  @IsNotEmpty()
-  phoneNumber: string;
+  @IsObject()
+  @IsNotEmptyObject()
+  service: object;
 
-  @IsString()
-  @IsOptional()
-  address: string;
-
+  @Type(() => Date) // Convierte el string a Date
   @IsDate()
+  @IsNotEmpty()
+  date: Date;
+
+  @IsString()
+  @IsNotEmpty()
+  time: string;
+
   @IsOptional()
-  hireDate: Date;
+  @IsString()
+  employee: string;
+
+  @IsString()
+  @IsOptional()
+  notes: string;
 }

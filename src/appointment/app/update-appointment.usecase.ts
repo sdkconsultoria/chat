@@ -8,6 +8,6 @@ export class UpdateAppointmentUsecase {
   ) {}
 
   async execute(id: string, data: any): Promise<any> {
-    await this.appointmentRepository.update(id, data);
+    return await this.appointmentRepository.update(id, data);
   }
 }

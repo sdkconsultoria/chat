@@ -1,11 +1,12 @@
 export class AppointmentModel {
   id: string;
-  name: string;
-  lastName: string;
-  lastName2: string;
-  profilePicture: string;
-  email: string;
-  password: string;
+  client: object;
+  pet: object;
+  service: object;
+  date: Date;
+  time: string;
+  employee: string;
+  notes: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;

@@ -9,32 +9,23 @@ export class Appointment {
   // @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   // userId: User;
 
-  @Prop()
-  clientId: string;
+  @Prop({ type: Object })
+  client: object;
+
+  @Prop({ type: Object })
+  pet: object;
+
+  @Prop({ type: Object })
+  service: object;
 
   @Prop()
-  petId: string;
-
-  @Prop()
-  serviceId: string;
-
-  @Prop()
-  date: string;
+  date: Date;
 
   @Prop()
   time: string;
 
   @Prop()
-  duration: number;
-
-  @Prop()
-  price: number;
-
-  @Prop()
-  status: string;
-
-  @Prop()
-  employeeId: string;
+  employee: string;
 
   @Prop()
   notes: string;

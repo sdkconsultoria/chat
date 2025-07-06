@@ -9,6 +9,6 @@ export class CreateAppointmentUsecase {
   ) {}
 
   async execute(createAppointmentDto: CreateAppointmentDto): Promise<any> {
-    await this.appointmentRepository.create(createAppointmentDto);
+    return await this.appointmentRepository.create(createAppointmentDto);
   }
 }
