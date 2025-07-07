@@ -16,7 +16,7 @@ import { UpdateSaleUsecase } from '../app/update-sale.usecase';
 import { DeleteSaleUsecase } from '../app/delete-sale.usecase';
 import { GetSaleUsecase } from '../app/get-sale.usecase';
 
-@Controller('appointment')
+@Controller('sale')
 export class SaleController {
   constructor(
     @Inject()
