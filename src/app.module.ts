@@ -8,6 +8,7 @@ import { ClientModule } from './client/client.module';
 import { ServiceModule } from './service/service.module';
 import { ProductModule } from './product/product.module';
 import { AppointmentModule } from './appointment/appointment.module';
+import { SaleModule } from './sale/sale.module';
 
 @Global()
 @Module({
@@ -21,6 +22,7 @@ import { AppointmentModule } from './appointment/appointment.module';
     ServiceModule,
     ProductModule,
     AppointmentModule,
+    SaleModule,
   ],
 })
 export class AppModule {}
