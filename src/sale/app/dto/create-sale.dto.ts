@@ -12,9 +12,8 @@ import {
 import { CartItem } from './sale.dto';
 
 export class CreateSaleDto {
-  @IsArray()
   @IsNotEmpty()
-  cart: CartItem[] = [];
+  cart: any;
 
   @IsNotEmpty()
   @IsString()
@@ -22,21 +21,17 @@ export class CreateSaleDto {
 
   @Transform(({ value }) => Number(value))
   @IsNumber()
-  setAmountPaid: number = 0;
+  amountPaid: number;
 
   @Transform(({ value }) => Number(value))
   @IsNumber()
-  change: number = 0;
+  change: number;
 
   @Transform(({ value }) => Number(value))
   @IsNumber()
-  total: number = 0;
+  total: number;
 
   @IsObject()
   @IsNotEmptyObject()
   client: object = {};
-
-  @IsString()
-  @IsNotEmpty()
-  status: string;
 }

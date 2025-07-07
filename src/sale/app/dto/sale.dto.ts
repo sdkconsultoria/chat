@@ -4,7 +4,7 @@ export class SaleDto extends BaseDto {
   id: string = '';
   cart: CartItem[] = [];
   paymentMethod: string = '';
-  setAmountPaid: number = 0;
+  amountPaid: number = 0;
   change: number = 0;
   total: number = 0;
   client: object = {};

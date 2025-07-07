@@ -16,7 +16,7 @@ export class Sale {
   paymentMethod: string = '';
 
   @Prop()
-  setAmountPaid: number = 0;
+  amountPaid: number = 0;
 
   @Prop()
   change: number = 0;
